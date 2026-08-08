@@ -10,9 +10,16 @@ const alertRoutes = require('./routes/alertRoutes');
 const announcementRoutes = require('./routes/announcementRoutes');
 const feedbackRoutes = require('./routes/feedbackRoutes');
 
+const fs = require('fs');
+
 dotenv.config();
 
 connectDB();
+
+const uploadDir = path.join(process.cwd(), 'uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const app = express();
 app.use(cors());
